@@ -8,6 +8,8 @@ const LikeBtn = ({ id, liked, handleLike, initialCount, handleLikeCount }) => {
       onClick={(e) => {
         handleLike(e, id);
         handleLikeCount(liked);
+        // e.stopPropagation();
+        console.log(liked);
       }}
     >
       {!liked ? (

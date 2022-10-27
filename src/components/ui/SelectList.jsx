@@ -1,11 +1,26 @@
 import React from "react";
 
-const SelectList = () => {
-  const handleClick = (e) => e.stopPropagation();
+const SelectList = ({
+  generateInnerPost,
+  post,
+  user,
+  image,
+  handleLike,
+  handleLikeCount,
+  setShowDropDown,
+}) => {
   return (
-    <ul className="dropdown-list" onClick={(e) => handleClick(e)}>
-      <li>Show post</li>
-      <li>Like/dislike</li>
+    <ul className="dropdown-list">
+      <li onClick={() => generateInnerPost(post, user, image)}>View post</li>
+      <li
+        onClick={(e) => {
+          handleLikeCount(post.isLiked);
+          handleLike(e, post.id);
+          console.log(e);
+        }}
+      >
+        {post.isLiked ? "Dislike" : "Like"}
+      </li>
     </ul>
   );
 };

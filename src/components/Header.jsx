@@ -1,10 +1,12 @@
+import { AiOutlineArrowLeft } from "react-icons/ai";
+
 const Header = ({ commentOpen, closeComment }) => {
   return (
     <header className="header">
       {commentOpen ? (
         <>
           <button className="btn" onClick={closeComment}>
-            Go back
+            <AiOutlineArrowLeft size={20} />
           </button>
           <h2>Tweet</h2>
         </>

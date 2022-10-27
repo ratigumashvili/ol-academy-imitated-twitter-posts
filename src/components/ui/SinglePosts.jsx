@@ -41,7 +41,17 @@ const SinglePosts = ({ user, post, image, generateInnerPost, handleLike }) => {
             <button className="btn dropdown" onClick={(e) => handleDropDown(e)}>
               ...
             </button>
-            {showDropdown && <SelectList />}
+            {showDropdown && (
+              <SelectList
+                generateInnerPost={generateInnerPost}
+                post={post}
+                user={user}
+                image={image}
+                handleLike={handleLike}
+                handleLikeCount={handleLikeCount}
+                setShowDropDown={setShowDropDown}
+              />
+            )}
           </div>
         </div>
         <p className="single-post__text">{post?.body}</p>
