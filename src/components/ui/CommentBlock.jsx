@@ -1,12 +1,13 @@
 const CommentBlock = ({ fetchedComments }) => {
   return (
-    <div>
+    <ul className="comments-block">
       {fetchedComments?.map((comment) => (
-        <div key={comment.id}>
-          {comment.email} <br /> <p>{comment.body}</p>
-        </div>
+        <li key={comment.id}>
+          <b>{comment.email}</b>
+          <p>{comment.body}</p>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

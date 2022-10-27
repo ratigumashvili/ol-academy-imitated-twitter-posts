@@ -89,6 +89,26 @@ body {
   gap: 20px;
 }
 
+.comments-block {
+  list-style: none;
+  margin: 15px 0;
+  padding-left: 60px;
+}
+
+.comments-block li {
+  padding: 15px;
+  transition: all 0.25s ease;
+}
+
+.comments-block li:hover {
+  cursor: pointer;
+  background-color: #f2f2f2;
+}
+
+.comments-block li p {
+  margin-top: 10px;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -114,6 +134,51 @@ body {
 
 .dropdown-container {
   position: relative;
+}
+
+.dropdown {
+  width: 30px;
+  height: 30px;
+  border: solid 1px #e2e2e2;
+  background-color: white;
+  border-radius: 50%;
+  position: relative;
+  z-index: 10;
+  transition: all 0.25s ease;
+}
+
+.dropdown:hover {
+  background-color: #39a2f331;
+  color: #39a2f3;
+}
+
+.dropdown-list {
+  width: max-content;
+  min-width: 250px;
+  margin: 0;
+  padding: 15px;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.dropdown-list li {
+  margin: 0 -15px;
+  padding: 10px 15px;
+  transition: all 0.25s ease;
+}
+
+.dropdown-list li:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown-list button {
+  font-size: 1rem;
 }
 
 .spinner {

@@ -47,11 +47,24 @@ const Feed = ({ commentOpen, setCommentOpen }) => {
     setInnerPost({
       name: user.name,
       username: user.username,
+      bg: user.profBgColor,
       id: post.id,
       body: post.body,
       imageUrl: image,
+      isLiked: post.isLiked,
     });
     setCommentOpen(true);
+  };
+
+  const handleLike = (e, currentId) => {
+    e.stopPropagation();
+    const newArr = updatedPosts.map((item) => {
+      if (item.id === currentId) {
+        item.isLiked = !item.isLiked;
+      }
+      return item;
+    });
+    setUpdatedPosts(newArr);
   };
 
   return (
@@ -64,10 +77,11 @@ const Feed = ({ commentOpen, setCommentOpen }) => {
             post={post}
             image={posters[post.id]?.url}
             generateInnerPost={generateInnerPost}
+            handleLike={handleLike}
           />
         ))
       ) : (
-        <CurrentPost innerPost={innerPost} />
+        <CurrentPost innerPost={innerPost} handleLike={handleLike} />
       )}
     </div>
   );
