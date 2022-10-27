@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import SinglePosts from "./ui/SinglePosts";
+import CurrentPost from "./ui/CurrentPost";
 
 import useFetchPosts from "../helpers/useFetchPosts";
 import useFetchUsers from "../helpers/useFetchUsers";
@@ -9,13 +10,14 @@ const POSTS_URL = `https://jsonplaceholder.typicode.com/posts/`;
 const USERS_URL = `https://jsonplaceholder.typicode.com/users`;
 const POSTERS_URL = `https://jsonplaceholder.typicode.com/photos`;
 
-const Feed = () => {
+const Feed = ({ commentOpen, setCommentOpen }) => {
   const { posts } = useFetchPosts(POSTS_URL);
   const { users } = useFetchUsers(USERS_URL);
   const { posters } = useFetchPosters(POSTERS_URL);
 
   const [updatedUsers, setUpdatedUsers] = useState([]);
   const [updatedPosts, setUpdatedPosts] = useState([]);
+  const [innerPost, setInnerPost] = useState({});
 
   useEffect(() => {
     const generateModifiedUser = () => {
@@ -41,17 +43,32 @@ const Feed = () => {
     generateModifiedPosts();
   }, [posts]);
 
+  const generateInnerPost = (post, user, image) => {
+    setInnerPost({
+      name: user.name,
+      username: user.username,
+      id: post.id,
+      body: post.body,
+      imageUrl: image,
+    });
+    setCommentOpen(true);
+  };
+
   return (
     <div>
-      feed
-      {updatedPosts?.map((post) => (
-        <SinglePosts
-          key={post.id}
-          user={updatedUsers[post.userId - 1]}
-          post={post}
-          image={posters[post.id]?.url}
-        />
-      ))}
+      {!commentOpen ? (
+        updatedPosts?.map((post) => (
+          <SinglePosts
+            key={post.id}
+            user={updatedUsers[post.userId - 1]}
+            post={post}
+            image={posters[post.id]?.url}
+            generateInnerPost={generateInnerPost}
+          />
+        ))
+      ) : (
+        <CurrentPost innerPost={innerPost} />
+      )}
     </div>
   );
 };
