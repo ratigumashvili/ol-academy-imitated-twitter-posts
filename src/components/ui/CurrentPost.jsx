@@ -15,7 +15,7 @@ const CurrentPost = ({ innerPost }) => {
       <article className="single-post inner">
         <Avatar bg={bg} name={name} />
         <div className="single-post__main-body">
-          <div className="dingle-post__header">
+          <div className="single-post__header">
             <b>{name}</b> @{username}
           </div>
           <p className="single-post__text">{body}</p>

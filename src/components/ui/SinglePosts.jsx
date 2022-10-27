@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import Avatar from "./Avatar";
 import LikeBtn from "./LikeBtn";
 import SelectList from "./SelectList";
@@ -39,7 +40,7 @@ const SinglePosts = ({ user, post, image, generateInnerPost, handleLike }) => {
           <b>{user?.name}</b> @{user?.username}
           <div className="dropdown-container" ref={dropdownRef}>
             <button className="btn dropdown" onClick={(e) => handleDropDown(e)}>
-              ...
+              <HiOutlineDotsHorizontal size={20} />
             </button>
             {showDropdown && (
               <SelectList

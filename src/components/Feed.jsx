@@ -5,15 +5,16 @@ import CurrentPost from "./ui/CurrentPost";
 import useFetchPosts from "../helpers/useFetchPosts";
 import useFetchUsers from "../helpers/useFetchUsers";
 import useFetchPosters from "../helpers/useFetchPosters";
+import Spinner from "./ui/Spinner";
 
 const POSTS_URL = `https://jsonplaceholder.typicode.com/posts/`;
 const USERS_URL = `https://jsonplaceholder.typicode.com/users`;
 const POSTERS_URL = `https://jsonplaceholder.typicode.com/photos`;
 
 const Feed = ({ commentOpen, setCommentOpen }) => {
-  const { posts } = useFetchPosts(POSTS_URL);
-  const { users } = useFetchUsers(USERS_URL);
-  const { posters } = useFetchPosters(POSTERS_URL);
+  const { posts, loadingPosts } = useFetchPosts(POSTS_URL);
+  const { users, loadUsers } = useFetchUsers(USERS_URL);
+  const { posters, loadingPosters } = useFetchPosters(POSTERS_URL);
 
   const [updatedUsers, setUpdatedUsers] = useState([]);
   const [updatedPosts, setUpdatedPosts] = useState([]);
@@ -66,6 +67,10 @@ const Feed = ({ commentOpen, setCommentOpen }) => {
     });
     setUpdatedPosts(newArr);
   };
+
+  if (loadingPosters || loadingPosts || loadUsers) {
+    return <Spinner />;
+  }
 
   return (
     <div>

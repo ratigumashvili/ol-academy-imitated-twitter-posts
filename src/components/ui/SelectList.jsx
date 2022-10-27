@@ -16,7 +16,7 @@ const SelectList = ({
         onClick={(e) => {
           handleLikeCount(post.isLiked);
           handleLike(e, post.id);
-          console.log(e);
+          setShowDropDown(false);
         }}
       >
         {post.isLiked ? "Dislike" : "Like"}
