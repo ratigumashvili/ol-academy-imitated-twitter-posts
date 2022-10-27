@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import SinglePosts from "./ui/SinglePosts";
 import CurrentPost from "./ui/CurrentPost";
-
-import useFetchPosts from "../helpers/useFetchPosts";
-import useFetchUsers from "../helpers/useFetchUsers";
-import useFetchPosters from "../helpers/useFetchPosters";
+import useFetch from "../helpers/useFetch";
 import Spinner from "./ui/Spinner";
 
 const POSTS_URL = `https://jsonplaceholder.typicode.com/posts/`;
@@ -12,9 +9,9 @@ const USERS_URL = `https://jsonplaceholder.typicode.com/users`;
 const POSTERS_URL = `https://jsonplaceholder.typicode.com/photos`;
 
 const Feed = ({ commentOpen, setCommentOpen }) => {
-  const { posts, loadingPosts } = useFetchPosts(POSTS_URL);
-  const { users, loadUsers } = useFetchUsers(USERS_URL);
-  const { posters, loadingPosters } = useFetchPosters(POSTERS_URL);
+  const { data: posts, loading: loadingPosts } = useFetch(POSTS_URL);
+  const { data: users, loading: loadUsers } = useFetch(USERS_URL);
+  const { data: posters, loading: loadingPosters } = useFetch(POSTERS_URL);
 
   const [updatedUsers, setUpdatedUsers] = useState([]);
   const [updatedPosts, setUpdatedPosts] = useState([]);

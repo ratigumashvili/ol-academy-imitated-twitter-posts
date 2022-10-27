@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react";
 
-const useFetchComments = (url) => {
-  const [fetchedComments, setFetchedComments] = useState([]);
+const useFetch = (url) => {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchComments = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
         const response = await fetch(url);
         const data = await response.json();
-        setFetchedComments(data);
+        setData(data);
       } catch (err) {
         console.log(err);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchComments();
+    fetchData();
   }, [url]);
 
-  return { fetchedComments, loading };
+  return { data, loading };
 };
 
-export default useFetchComments;
+export default useFetch;

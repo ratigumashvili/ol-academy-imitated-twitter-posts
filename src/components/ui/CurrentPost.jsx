@@ -1,4 +1,4 @@
-import useFetchComments from "../../helpers/useFetchComments";
+import useFetch from "../../helpers/useFetch";
 import Avatar from "./Avatar";
 import CommentBlock from "./CommentBlock";
 import Spinner from "./Spinner";
@@ -7,7 +7,8 @@ const COMMENTS_URL = `https://jsonplaceholder.typicode.com/comments`;
 
 const CurrentPost = ({ innerPost }) => {
   const { id, name, username, bg, body, imageUrl } = innerPost;
-  const { fetchedComments, loading } = useFetchComments(
+
+  const { data: fetchedComments, loading: loadingComments } = useFetch(
     `${COMMENTS_URL}/?postId=${id}`
   );
   return (
@@ -22,7 +23,7 @@ const CurrentPost = ({ innerPost }) => {
           <img className="single-post__poster" src={imageUrl} alt={name} />
         </div>
       </article>
-      {loading ? (
+      {loadingComments ? (
         <Spinner />
       ) : (
         <CommentBlock fetchedComments={fetchedComments} />
