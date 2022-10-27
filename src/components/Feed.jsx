@@ -86,7 +86,7 @@ const Feed = ({ commentOpen, setCommentOpen }) => {
           />
         ))
       ) : (
-        <CurrentPost innerPost={innerPost} handleLike={handleLike} />
+        <CurrentPost innerPost={innerPost} />
       )}
     </div>
   );
