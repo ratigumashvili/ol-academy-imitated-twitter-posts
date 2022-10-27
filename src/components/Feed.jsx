@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import SinglePosts from "./ui/SinglePosts";
 
 import useFetchPosts from "../helpers/useFetchPosts";
 import useFetchUsers from "../helpers/useFetchUsers";
@@ -43,12 +44,13 @@ const Feed = () => {
   return (
     <div>
       feed
-      {updatedPosts?.map((item) => (
-        <div key={item.id}>
-          <p>{updatedUsers[item.userId - 1]?.name}</p>
-          <p>{item.title}</p>
-          <p>{posters[item.id]?.url}</p>
-        </div>
+      {updatedPosts?.map((post) => (
+        <SinglePosts
+          key={post.id}
+          user={updatedUsers[post.userId - 1]}
+          post={post}
+          image={posters[post.id]?.url}
+        />
       ))}
     </div>
   );

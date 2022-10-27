@@ -1,13 +1,117 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app {
+  max-width: 100%;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.btn {
+  background: unset;
+  border: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+.btn .icon {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  margin-right: 5px;
+  display: inline-block;
+  border: solid 1px transparent;
+  border-radius: 50%;
+  overflow: overlay;
+}
+
+.posts {
+  border: solid 1px #e2e2e2;
+}
+
+.single-post {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  border-bottom: solid 1px #e2e2e2;
+  transition: all 0.25s ease;
+}
+
+.single-post:not(.inner):hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+.single-post__header {
+  height: 40px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.single-post__header .dropdown-container {
+  margin-left: auto;
+}
+
+.single-post__text {
+  margin-top: 0;
+  margin-bottom: 15px;
+  line-height: 22px;
+}
+
+.single-post__poster {
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.single-post__footer {
+  margin: 20px 0 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: solid 1px #e3e3e3;
+  text-transform: uppercase;
+}
+
+.poster {
+  display: block;
+}
+
+.dropdown-container {
+  position: relative;
 }
