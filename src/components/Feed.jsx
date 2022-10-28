@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import useFetch from "../hooks/useFetch";
+import generateColor from "../helpers/generateColor";
 import SinglePosts from "./ui/SinglePosts";
 import CurrentPost from "./ui/CurrentPost";
-import useFetch from "../helpers/useFetch";
 import Spinner from "./ui/Spinner";
 
 const POSTS_URL = `https://jsonplaceholder.typicode.com/posts/`;
@@ -10,7 +11,7 @@ const POSTERS_URL = `https://jsonplaceholder.typicode.com/photos`;
 
 const Feed = ({ commentOpen, setCommentOpen }) => {
   const { data: posts, loading: loadingPosts } = useFetch(POSTS_URL);
-  const { data: users, loading: loadUsers } = useFetch(USERS_URL);
+  const { data: users, loading: loadingUsers } = useFetch(USERS_URL);
   const { data: posters, loading: loadingPosters } = useFetch(POSTERS_URL);
 
   const [updatedUsers, setUpdatedUsers] = useState([]);
@@ -20,9 +21,7 @@ const Feed = ({ commentOpen, setCommentOpen }) => {
   useEffect(() => {
     const generateModifiedUser = () => {
       const allUsers = users?.map((user) => {
-        let profBgColor = `#${Math.floor(Math.random() * 0xffffff).toString(
-          16
-        )}`;
+        let profBgColor = generateColor();
         return { ...user, profBgColor };
       });
       setUpdatedUsers(allUsers);
@@ -65,7 +64,7 @@ const Feed = ({ commentOpen, setCommentOpen }) => {
     setUpdatedPosts(newArr);
   };
 
-  if (loadingPosters || loadingPosts || loadUsers) {
+  if (loadingPosters || loadingPosts || loadingUsers) {
     return <Spinner />;
   }
 

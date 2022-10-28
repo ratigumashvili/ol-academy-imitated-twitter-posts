@@ -1,4 +1,4 @@
-import useFetch from "../../helpers/useFetch";
+import useFetch from "../../hooks/useFetch";
 import Avatar from "./Avatar";
 import CommentBlock from "./CommentBlock";
 import Spinner from "./Spinner";
